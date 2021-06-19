@@ -24,7 +24,19 @@
         @endif
         
         <td class="border px-4 py-2">{{$cuenta->saldo}}</td>
-        <td class="border px-4 py-2"><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">Editar</button></td>
+        <td class="border px-4 py-2">
+          <div class="flexflex items-center justify-between">
+            <a href="{{route('cuentas.edit', $cuenta->id)}}">
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">Editar</button>
+            <form action="{{route('cuentas.delete', $cuenta->id)}}" method="post">
+              @csrf
+              @method('delete')
+              <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" type="submit">Eliminar</button>
+            </form>
+            
+          </div>
+        </a>
+        </td>
       </tr>
       @endforeach         
     </tbody>

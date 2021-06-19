@@ -68,9 +68,10 @@ class CuentaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Cuenta $cuenta)
-    {
-        //
+    {           
+        return view('cuenta-edit', ['cuenta'=>$cuenta]);
     }
+    
 
     /**
      * Update the specified resource in storage.
@@ -81,7 +82,14 @@ class CuentaController extends Controller
      */
     public function update(Request $request, Cuenta $cuenta)
     {
-        //
+        $cuenta->nombre_cuenta=$request->nombre;
+        if($request->naturaleza=="Se carga"){
+            $cuenta->naturaleza=true;
+        }else {
+            $cuenta->naturaleza=false;
+        }
+        $cuenta->save();
+        return redirect(route('cuentas'));         
     }
 
     /**
@@ -92,6 +100,7 @@ class CuentaController extends Controller
      */
     public function destroy(Cuenta $cuenta)
     {
-        //
+        $cuenta->delete();
+        return redirect(route('cuentas'));         
     }
 }

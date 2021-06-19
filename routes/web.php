@@ -27,6 +27,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function(){
     Route::get('/cuentas', [CuentaController::class, 'index'])->name('cuentas');
     Route::get('/cuentas/create', [CuentaController::class, 'create'])->name('cuentas.create');
     Route::post('/cuentas/create', [CuentaController::class, 'store'])->name('cuentas.store');
+    Route::get('/cuentas/edit/{cuenta}', [CuentaController::class, 'edit'])->name('cuentas.edit');
+    Route::put('/cuentas/update/{cuenta}', [CuentaController::class, 'update'])->name('cuentas.update');
+    Route::delete('/cuentas/delete/{cuenta}', [CuentaController::class, 'destroy'])->name('cuentas.delete');
     Route::view('/dashboard', 'dashboard')->name('dashboard');
 });
 
