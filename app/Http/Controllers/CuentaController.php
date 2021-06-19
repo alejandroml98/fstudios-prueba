@@ -4,9 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Cuenta;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CuentaController extends Controller
 {
+    public function __construct()
+    {        
+        $this->middleware('admin');
+    }
     /**
      * Display a listing of the resource.
      *
