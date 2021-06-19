@@ -23,6 +23,10 @@ class CreateUsersTable extends Migration
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamps();
+            //Llaves foraneas
+            //relacion con roles
+            $table->unsignedBigInteger('rol_id');
+            $table->foreign('rol_id')->references('id')->on('rols');
         });
     }
 
