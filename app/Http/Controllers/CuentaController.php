@@ -14,7 +14,8 @@ class CuentaController extends Controller
      */
     public function index()
     {
-        //
+        $cuentas= Cuenta::all();
+        return view('cuentas', ['cuentas'=>$cuentas]);
     }
 
     /**
@@ -24,7 +25,7 @@ class CuentaController extends Controller
      */
     public function create()
     {
-        //
+        return view('cuenta-create');
     }
 
     /**
@@ -35,7 +36,18 @@ class CuentaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request->naturaleza);
+        $cuenta= new Cuenta();
+        $cuenta->nombre_cuenta=$request->nombre;
+        if($request->naturaleza=="Se carga"){
+            $cuenta->naturaleza=true;
+        }else {
+            $cuenta->naturaleza=false;
+        }
+        $cuenta->saldo=0;
+        $cuenta->save();
+        return redirect(route('cuentas')); 
+        
     }
 
     /**
