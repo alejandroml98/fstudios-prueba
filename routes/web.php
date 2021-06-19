@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\CuentaController;
+use App\Http\Controllers\TransaccionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,5 +20,13 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
+    return view('welcome2');
 })->name('dashboard');
+
+Route::middleware(['auth:sanctum', 'verified'])->group(function(){
+    Route::get('/cuentas', [CuentaController::class, 'index'])->name('cuentas');
+    Route::get('/cuentas/create', [CuentaController::class, 'create'])->name('cuentas.create');
+    Route::post('/cuentas/create', [CuentaController::class, 'store'])->name('cuentas.store');
+    Route::view('/dashboard', 'dashboard')->name('dashboard');
+});
+

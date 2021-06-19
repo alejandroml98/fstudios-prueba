@@ -17,6 +17,7 @@ class CreateCuentasTable extends Migration
             $table->id();
             $table->string('nombre_cuenta');
             $table->double('saldo', 10,2);
+            $table->boolean('naturaleza');
             $table->timestamps();
         });
     }
